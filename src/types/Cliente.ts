@@ -1,10 +1,11 @@
 export class Cliente {
   created_at?: Date;
   updated_at?: Date;
-  data_nascimento: Date;
+  data_nascimento: string;
   id: number;
   nome: string;
-  sexo: "masculino" | "feminino";
+  sexo: "masculino" | "feminino" | "";
+  enderecos?: Endereco[] = [];
   constructor(params: Cliente) {
     this.created_at = params.created_at;
     this.updated_at = params.updated_at;
@@ -16,8 +17,10 @@ export class Cliente {
 }
 
 export class Endereco {
-  cliente_id: number;
-  tipo: "comercial" | "residencial" = "residencial";
+  localId: string;
+  id?: number;
+  cliente_id?: number;
+  tipo: "comercial" | "residencial" | "" = "residencial";
   cep: string;
   logradouro: string;
   UF: string;
@@ -25,6 +28,8 @@ export class Endereco {
   complemento?: string;
   bairro?: string;
   constructor(params: Endereco) {
+    this.localId = params.localId;
+    this.id = params.id;
     this.cliente_id = params.cliente_id;
     this.tipo = params.tipo;
     this.cep = params.cep;
