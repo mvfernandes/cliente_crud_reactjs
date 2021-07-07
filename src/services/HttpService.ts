@@ -2,9 +2,10 @@ import { BaseResponse } from "../types/Baseresponse";
 import { Cliente, Endereco } from "../types/Cliente";
 import axios from "axios";
 
-const api = axios.create({ baseURL: "http://127.0.0.1:8000/api" });
+// const api = axios.create({ baseURL: "http://127.0.0.1:8000/api" }); //To consume api laravel
+
+const api = axios.create({ baseURL: "https://localhost:5001" }); //To consume api .NET
 class HttpService {
-  private readonly URL_API = "http://127.0.0.1:8000/api";
   private catch(message = "Ocorreu algum erro") {
     return new BaseResponse({
       data: [],
