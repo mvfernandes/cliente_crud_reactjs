@@ -18,6 +18,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import PersonAdd from "@material-ui/icons/PersonAdd";
 import { ClientsTable } from "../../components/ClientsTable";
+import { DialogFormUser } from "../../components/DialogFormUser";
+import { useAppcontext } from "../../context/Context";
 
 const drawerWidth = 240;
 
@@ -110,6 +112,8 @@ export function DashBoard() {
     setOpen(false);
   };
 
+  const ctx = useAppcontext();
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -155,7 +159,7 @@ export function DashBoard() {
         </div>
         <Divider />
         <div>
-          <ListItem button>
+          <ListItem button onClick={() => ctx.toggleOpenAddEditUser(true, true)}>
             <ListItemIcon>
               <PersonAdd />
             </ListItemIcon>
@@ -175,6 +179,7 @@ export function DashBoard() {
           </Grid>
         </Container>
       </main>
+      {ctx.openAddEditUser && <DialogFormUser />}
     </div>
   );
 }
